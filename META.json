@@ -32,6 +32,9 @@
       },
       "runtime" : {
          "requires" : {
+            "Scope::Guard" : "0",
+            "Term::ANSIColor" : "0",
+            "Term::Encoding" : "0",
             "parent" : "0",
             "perl" : "5.010001"
          }
@@ -40,7 +43,7 @@
    "provides" : {
       "Test::Pretty" : {
          "file" : "lib/Test/Pretty.pm",
-         "version" : "0.01"
+         "version" : "0.02"
       }
    },
    "release_status" : "stable",
@@ -49,5 +52,5 @@
          "http://dev.perl.org/licenses/"
       ]
    },
-   "version" : "0.01"
+   "version" : "0.02"
 }

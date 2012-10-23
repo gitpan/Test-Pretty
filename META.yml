@@ -20,8 +20,9 @@ no_index:
 provides:
   Test::Pretty:
     file: lib/Test/Pretty.pm
-    version: 0.05
+    version: 0.06
 requires:
+  Carp: 0
   Scope::Guard: 0
   Term::ANSIColor: 0
   Term::Encoding: 0
@@ -29,4 +30,4 @@ requires:
   perl: 5.010001
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.05
+version: 0.06

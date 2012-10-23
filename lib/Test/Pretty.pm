@@ -2,13 +2,14 @@ package Test::Pretty;
 use strict;
 use warnings;
 use 5.010001;
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 use Test::Builder;
 use Term::Encoding ();
 use File::Spec ();
 use Term::ANSIColor qw/colored/;
 use Scope::Guard;
+use Carp ();
 
 use Cwd ();
 our $BASE_DIR = Cwd::getcwd();
@@ -43,11 +44,21 @@ if (!$ENV{HARNESS_ACTIVE} && $^O ne 'MSWin32') {
     no warnings 'redefine';
     my $ORIGINAL_ok = \&Test::Builder::ok;
     my @NAMES;
+
+    $|++;
+
+    my $encoding = Term::Encoding::term_encoding();
+    my $builder = Test::Builder->new;
+    binmode $builder->output(), "encoding($encoding)";
+    binmode $builder->failure_output(), "encoding($encoding)";
+    binmode $builder->todo_output(), "encoding($encoding)";
+
     *Test::Builder::subtest = sub {
         push @NAMES, $_[1];
         my $guard = Scope::Guard->new(sub {
             pop @NAMES;
         });
+        $_[0]->note(colored(['cyan'], "\x{bb}" x (@NAMES*2)) . " " . join(colored(['yellow'], " \x{2192} "), $NAMES[-1]));
         $_[2]->();
     };
     *Test::Builder::ok = sub {
@@ -66,7 +77,13 @@ sub _ok {
     my( $self, $test, $name ) = @_;
 
     my ($pkg, $filename, $line) = caller($Test::Builder::Level);
-    my $src_line = $get_src_line->($filename, $line);
+    my $src_line;
+    if (defined($line)) {
+        $src_line = $get_src_line->($filename, $line);
+    } else {
+        $self->diag(Carp::longmess("\$Test::Builder::Level is invalid. Testing library you are using is broken. : $Test::Builder::Level"));
+        $src_line = '';
+    }
 
     if ( $self->{Child_Name} and not $self->{In_Destroy} ) {
         $name = 'unnamed test' unless defined $name;
@@ -229,7 +246,7 @@ Or just add following option to perl interpreter.
     
     -MTest::Pretty
 
-After this, you can get a following prerty output.
+After this, you can get a following pretty output.
 
 =begin html
 

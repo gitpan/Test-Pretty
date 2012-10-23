@@ -39,7 +39,7 @@ DESCRIPTION
 
         -MTest::Pretty
 
-    After this, you can get a following prerty output.
+    After this, you can get a following pretty output.
 
     And this module outputs TAP when $ENV{HARNESS_ACTIVE} is true or under
     the win32.

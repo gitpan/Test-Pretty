@@ -41,6 +41,9 @@ DESCRIPTION
 
     After this, you can get a following prerty output.
 
+    And this module outputs TAP when $ENV{HARNESS_ACTIVE} is true or under
+    the win32.
+
 AUTHOR
     Tokuhiro Matsuno <tokuhirom AAJKLFJEF@ GMAIL COM>
 

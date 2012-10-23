@@ -2,7 +2,7 @@ package Test::Pretty;
 use strict;
 use warnings;
 use 5.010001;
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 use Test::Builder;
 use Term::Encoding ();
@@ -10,7 +10,7 @@ use File::Spec ();
 use Term::ANSIColor qw/colored/;
 use Scope::Guard;
 
-if (!$ENV{HARNESS_ACTIVE}) {
+if (!$ENV{HARNESS_ACTIVE} && $^O ne 'MSWin32') {
     no warnings 'redefine';
     *Test::Builder::subtest = \&_subtest;
     *Test::Builder::ok = \&_ok;
@@ -214,6 +214,8 @@ After this, you can get a following prerty output.
 <div><img src="https://raw.github.com/tokuhirom/Test-Pretty/master/img/pretty.png"></div>
 
 =end html
+
+And this module outputs TAP when $ENV{HARNESS_ACTIVE} is true or under the win32.
 
 =head1 AUTHOR
 

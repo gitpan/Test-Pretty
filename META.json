@@ -43,7 +43,7 @@
    "provides" : {
       "Test::Pretty" : {
          "file" : "lib/Test/Pretty.pm",
-         "version" : "0.02"
+         "version" : "0.03"
       }
    },
    "release_status" : "stable",
@@ -52,5 +52,5 @@
          "http://dev.perl.org/licenses/"
       ]
    },
-   "version" : "0.02"
+   "version" : "0.03"
 }

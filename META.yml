@@ -1,5 +1,5 @@
 ---
-abstract: 'Yes! PrettyCure 5!'
+abstract: 'Smile Precure!'
 author:
   - 'Tokuhiro Matsuno E<lt>tokuhirom AAJKLFJEF@ GMAIL COME<gt>'
 build_requires:
@@ -20,7 +20,7 @@ no_index:
 provides:
   Test::Pretty:
     file: lib/Test/Pretty.pm
-    version: 0.03
+    version: 0.04
 requires:
   Scope::Guard: 0
   Term::ANSIColor: 0
@@ -29,4 +29,4 @@ requires:
   perl: 5.010001
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.03
+version: 0.04

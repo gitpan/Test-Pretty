@@ -46,6 +46,10 @@
          "file" : "lib/App/Prove/Plugin/Pretty.pm",
          "version" : 0
       },
+      "App::Prove::Plugin::retty" : {
+         "file" : "lib/App/Prove/Plugin/retty.pm",
+         "version" : 0
+      },
       "TAP::Formatter::Pretty::Multi" : {
          "file" : "lib/TAP/Formatter/Pretty/Multi.pm",
          "version" : 0
@@ -64,7 +68,7 @@
       },
       "Test::Pretty" : {
          "file" : "lib/Test/Pretty.pm",
-         "version" : "0.09"
+         "version" : "0.10"
       },
       "Test::Pretty::Harness" : {
          "file" : "lib/Test/Pretty/Harness.pm",
@@ -77,5 +81,5 @@
          "http://dev.perl.org/licenses/"
       ]
    },
-   "version" : "0.09"
+   "version" : "0.10"
 }

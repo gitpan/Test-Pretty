@@ -2,7 +2,7 @@ package Test::Pretty;
 use strict;
 use warnings;
 use 5.010001;
-our $VERSION = '0.07';
+our $VERSION = '0.08';
 
 use Test::Builder;
 use Term::Encoding ();
@@ -26,7 +26,10 @@ my $get_src_line = sub {
     return $line;
 };
 
-if (!$ENV{HARNESS_ACTIVE} && $^O ne 'MSWin32') {
+my $SHOW_DUMMY_TAP;
+
+if ((!$ENV{HARNESS_ACTIVE} || $ENV{PERL_TEST_PRETTY_ENABLED}) && $^O ne 'MSWin32') {
+    # make pretty
     no warnings 'redefine';
     *Test::Builder::subtest = \&_subtest;
     *Test::Builder::ok = \&_ok;
@@ -35,11 +38,16 @@ if (!$ENV{HARNESS_ACTIVE} && $^O ne 'MSWin32') {
     };
     my $builder = Test::Builder->new;
     $builder->no_ending(1);
+    $builder->no_header(1); # plan
 
     my $encoding = Term::Encoding::term_encoding();
     binmode $builder->output(), "encoding($encoding)";
     binmode $builder->failure_output(), "encoding($encoding)";
     binmode $builder->todo_output(), "encoding($encoding)";
+
+    if ($ENV{HARNESS_ACTIVE}) {
+        $SHOW_DUMMY_TAP++;
+    }
 } else {
     no warnings 'redefine';
     my $ORIGINAL_ok = \&Test::Builder::ok;
@@ -71,6 +79,21 @@ if (!$ENV{HARNESS_ACTIVE} && $^O ne 'MSWin32') {
         }
         goto &$ORIGINAL_ok;
     };
+}
+
+END {
+    if ($SHOW_DUMMY_TAP) {
+        my $builder = Test::More->builder;
+        printf("\n%s\n", $builder->is_passing ? 'ok' : 'not ok');
+        if ($builder->is_passing) {
+            ## no critic (Variables::RequireLocalizedPunctuationVars)
+            $? = 0;
+        } else {
+            # TODO: exit status may be 'how many failed'
+            ## no critic (Variables::RequireLocalizedPunctuationVars)
+            $? = 1;
+        }
+    }
 }
 
 sub _ok {

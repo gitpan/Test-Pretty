@@ -42,9 +42,33 @@
       }
    },
    "provides" : {
+      "App::Prove::Plugin::Pretty" : {
+         "file" : "lib/App/Prove/Plugin/Pretty.pm",
+         "version" : 0
+      },
+      "TAP::Formatter::Pretty::Multi" : {
+         "file" : "lib/TAP/Formatter/Pretty/Multi.pm",
+         "version" : 0
+      },
+      "TAP::Formatter::Pretty::Multi::Session" : {
+         "file" : "lib/TAP/Formatter/Pretty/Multi/Session.pm",
+         "version" : 0
+      },
+      "TAP::Formatter::Pretty::Single" : {
+         "file" : "lib/TAP/Formatter/Pretty/Single.pm",
+         "version" : 0
+      },
+      "TAP::Formatter::Pretty::Single::Session" : {
+         "file" : "lib/TAP/Formatter/Pretty/Single/Session.pm",
+         "version" : 0
+      },
       "Test::Pretty" : {
          "file" : "lib/Test/Pretty.pm",
-         "version" : "0.07"
+         "version" : "0.08"
+      },
+      "Test::Pretty::Harness" : {
+         "file" : "lib/Test/Pretty/Harness.pm",
+         "version" : 0
       }
    },
    "release_status" : "stable",
@@ -53,5 +77,5 @@
          "http://dev.perl.org/licenses/"
       ]
    },
-   "version" : "0.07"
+   "version" : "0.08"
 }

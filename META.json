@@ -64,7 +64,7 @@
       },
       "Test::Pretty" : {
          "file" : "lib/Test/Pretty.pm",
-         "version" : "0.08"
+         "version" : "0.09"
       },
       "Test::Pretty::Harness" : {
          "file" : "lib/Test/Pretty/Harness.pm",
@@ -77,5 +77,5 @@
          "http://dev.perl.org/licenses/"
       ]
    },
-   "version" : "0.08"
+   "version" : "0.09"
 }

@@ -34,6 +34,7 @@
          "requires" : {
             "Carp" : "0",
             "Scope::Guard" : "0",
+            "TAP::Harness" : "0",
             "Term::ANSIColor" : "3.02",
             "Term::Encoding" : "0",
             "parent" : "0",
@@ -68,10 +69,14 @@
       },
       "Test::Pretty" : {
          "file" : "lib/Test/Pretty.pm",
-         "version" : "0.10"
+         "version" : "0.11"
       },
       "Test::Pretty::Harness" : {
          "file" : "lib/Test/Pretty/Harness.pm",
+         "version" : 0
+      },
+      "Test::Pretty::Parser" : {
+         "file" : "lib/Test/Pretty/Parser.pm",
          "version" : 0
       }
    },
@@ -81,5 +86,5 @@
          "http://dev.perl.org/licenses/"
       ]
    },
-   "version" : "0.10"
+   "version" : "0.11"
 }

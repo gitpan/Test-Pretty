@@ -9,16 +9,17 @@ sub load {
     my $app = $p->{app_prove};
     # make pretty output for testing only one file.
     if (@{$app->argv} == 1 && -f $app->argv->[0]) {
-        $app->verbose(1);
+        unless ($app->quiet || $app->really_quiet) {
+            $app->verbose(1);
+        }
         $app->formatter('TAP::Formatter::Pretty::Single');
+        $app->harness('Test::Pretty::Harness');
         $ENV{PERL_TEST_PRETTY_ENABLED} = 1;
-        $ENV{PERL5OPT} .= ' -MTest::Pretty';
     } elsif ($app->verbose) {
     # make pretty output for verbose multiple file test.
         $app->formatter('TAP::Formatter::Pretty::Multi');
         $app->harness('Test::Pretty::Harness');
         $ENV{PERL_TEST_PRETTY_ENABLED} = 1;
-        $ENV{PERL5OPT} .= ' -MTest::Pretty';
     } else {
         # do nothing.
     }

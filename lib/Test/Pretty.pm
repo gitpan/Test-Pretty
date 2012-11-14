@@ -2,7 +2,7 @@ package Test::Pretty;
 use strict;
 use warnings;
 use 5.008001;
-our $VERSION = '0.16';
+our $VERSION = '0.17';
 
 use Test::Builder 0.82;
 use Term::Encoding ();
@@ -263,7 +263,14 @@ sub _subtest {
         $builder->_indent() . "  $name\n";
     };
     $builder->_indent($orig_indent . '    ');
-    $code->();
+    my $curr_test = $builder->{Curr_Test};
+    my $retval = $code->();
+    if ($curr_test == $builder->{Curr_Test}) {
+        # no tests run in subtest.
+        $builder->diag("There is no test case in subtest");
+        $builder->is_passing(0);
+    }
+    $retval;
 }
 
 sub __plan_tests {

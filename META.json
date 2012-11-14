@@ -39,7 +39,7 @@
             "Term::Encoding" : "0",
             "Test::Builder" : "0.82",
             "parent" : "0",
-            "perl" : "5.010001"
+            "perl" : "5.008001"
          }
       }
    },
@@ -70,7 +70,7 @@
       },
       "Test::Pretty" : {
          "file" : "lib/Test/Pretty.pm",
-         "version" : "0.15"
+         "version" : "0.16"
       },
       "Test::Pretty::Harness" : {
          "file" : "lib/Test/Pretty/Harness.pm",
@@ -87,5 +87,5 @@
          "http://dev.perl.org/licenses/"
       ]
    },
-   "version" : "0.15"
+   "version" : "0.16"
 }

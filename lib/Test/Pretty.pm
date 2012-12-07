@@ -2,7 +2,7 @@ package Test::Pretty;
 use strict;
 use warnings;
 use 5.008001;
-our $VERSION = '0.19';
+our $VERSION = '0.20';
 
 use Test::Builder 0.82;
 use Term::Encoding ();
@@ -26,7 +26,8 @@ my $get_src_line = sub {
     # read a source as utf-8... Yes. it's bad. but works for most of users.
     # I may need to remove binmode for STDOUT?
     my $lines = $filecache{$filename} ||= do {
-        open my $fh, "<:encoding(utf-8)", $filename;
+        open my $fh, "<:encoding(utf-8)", $filename
+            or return '';
         [<$fh>]
     };
     my $line = $lines->[$lineno-1];
@@ -127,14 +128,16 @@ if ((!$ENV{HARNESS_ACTIVE} || $ENV{PERL_TEST_PRETTY_ENABLED})) {
 END {
     my $builder = Test::Builder->new;
     my $real_exit_code = $?;
-    if ($SHOW_DUMMY_TAP && !$real_exit_code) {
-        if ($builder->{Have_Plan}) {
-            if ($builder->{Curr_Test} != $builder->{Expected_Tests}) {
-                $builder->diag("Bad plan: $builder->{Curr_Test} != $builder->{Expected_Tests}");
-                $builder->is_passing(0);
-            }
+    if ($builder->{Have_Plan}) {
+        if ($builder->{Curr_Test} != $builder->{Expected_Tests}) {
+            $builder->diag("Bad plan: $builder->{Curr_Test} != $builder->{Expected_Tests}");
+            $builder->is_passing(0);
         }
-        printf("\n%s\n", $builder->is_passing ? 'ok' : 'not ok');
+    }
+    if ($SHOW_DUMMY_TAP) {
+        printf("\n%s\n", ($?==0 && $builder->is_passing) ? 'ok' : 'not ok');
+    }
+    if (!$real_exit_code) {
         if ($builder->is_passing) {
             ## no critic (Variables::RequireLocalizedPunctuationVars)
             $? = 0;

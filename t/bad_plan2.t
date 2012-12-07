@@ -4,11 +4,11 @@ use utf8;
 use Test::More;
 use t::Util;
 
-my $tap = run_test('t/plx/iss5.plx');
+my $tap = run_test('t/plx/bad_plan2.plx');
 exit_status_isnt(0);
 
 my $result = parse_tap($tap);
-isnt($result->passed, $result->plan);
+ok($result->has_problems, 'has problems');
 
 done_testing;
 

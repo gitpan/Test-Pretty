@@ -38,7 +38,7 @@ provides:
     version: 0
   Test::Pretty:
     file: lib/Test/Pretty.pm
-    version: 0.21
+    version: 0.22
   Test::Pretty::Harness:
     file: lib/Test/Pretty/Harness.pm
     version: 0
@@ -56,4 +56,4 @@ requires:
   perl: 5.008001
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.21
+version: 0.22

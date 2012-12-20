@@ -2,7 +2,7 @@ package Test::Pretty;
 use strict;
 use warnings;
 use 5.008001;
-our $VERSION = '0.21';
+our $VERSION = '0.22';
 
 use Test::Builder 0.82;
 use Term::Encoding ();
@@ -128,7 +128,7 @@ if ((!$ENV{HARNESS_ACTIVE} || $ENV{PERL_TEST_PRETTY_ENABLED})) {
 END {
     my $builder = Test::Builder->new;
     my $real_exit_code = $?;
-    if ($builder->{Have_Plan}) {
+    if ($builder->{Have_Plan} && !$builder->{No_Plan}) {
         if ($builder->{Curr_Test} != $builder->{Expected_Tests}) {
             $builder->diag("Bad plan: $builder->{Curr_Test} != $builder->{Expected_Tests}");
             $builder->is_passing(0);

@@ -2,7 +2,7 @@ package Test::Pretty;
 use strict;
 use warnings;
 use 5.008001;
-our $VERSION = '0.24';
+our $VERSION = '0.25';
 
 use Test::Builder 0.82;
 use Term::Encoding ();
@@ -114,14 +114,16 @@ if ((!$ENV{HARNESS_ACTIVE} || $ENV{PERL_TEST_PRETTY_ENABLED})) {
         $_[2]->();
     };
     *Test::Builder::ok = sub {
-        $_[2] ||= do {
+        my @args = @_;
+        $args[2] ||= do {
             my ( $package, $filename, $line ) = caller($Test::Builder::Level);
             "L $line: " . $get_src_line->($filename, $line);
         };
         if (@NAMES) {
-            $_[2] = "(" . join( '/', @NAMES)  . ") " . $_[2];
+            $args[2] = "(" . join( '/', @NAMES)  . ") " . $args[2];
         }
-        goto &$ORIGINAL_ok;
+        local $Test::Builder::Level = $Test::Builder::Level + 1;
+        &$ORIGINAL_ok(@_);
     };
 }
 

@@ -1,5 +1,3 @@
-.gitignore
-.travis.yml
 Build.PL
 Changes
 LICENSE
@@ -27,6 +25,7 @@ t/bad_plan.t
 t/bad_plan2.t
 t/builder_skip.t
 t/exit.t
+t/fork.t
 t/iss5.t
 t/no_plan.t
 t/no_test_in_subtest.t
@@ -54,8 +53,5 @@ t/subtests_have_plan.t
 t/test_requires.t
 t/typester.t
 xt/02_perlcritic.t
-Build.PL
-LICENSE
-META.json
 META.yml
 MANIFEST

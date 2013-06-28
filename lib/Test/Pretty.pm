@@ -2,7 +2,7 @@ package Test::Pretty;
 use strict;
 use warnings;
 use 5.008001;
-our $VERSION = '0.25';
+our $VERSION = '0.26';
 
 use Test::Builder 0.82;
 use Term::Encoding ();
@@ -14,7 +14,9 @@ use Carp ();
 
 use Cwd ();
 
-*colored = -t STDOUT ? \&Term::ANSIColor::colored : sub { $_[1] };
+*colored = -t STDOUT || $ENV{PERL_TEST_PRETTY_ENABLED} ? \&Term::ANSIColor::colored : sub { $_[1] };
+
+my $ORIGINAL_PID = $$;
 
 my $SHOW_DUMMY_TAP;
 my $TERM_ENCODING = Term::Encoding::term_encoding();
@@ -131,6 +133,12 @@ END {
     my $builder = Test::Builder->new;
     my $real_exit_code = $?;
 
+    # Don't bother with an ending if this is a forked copy.  Only the parent
+    # should do the ending.
+    if( $ORIGINAL_PID!= $$ ) {
+        goto NO_ENDING;
+    }
+
     # see Test::Builder::_ending
     if( !$builder->{Have_Plan} and $builder->{Curr_Test} ) {
         $builder->is_passing(0);
@@ -156,6 +164,7 @@ END {
             $? = 1;
         }
     }
+NO_ENDING:
 }
 
 sub _skip_all {
@@ -226,7 +235,7 @@ ERR
 
     if( defined $name ) {
         $name =~ s|#|\\#|g;    # # in a name can confuse Test::Harness.
-        $out .= colored(['BRIGHT_BLACK'], "  $name");
+        $out .= colored([$ENV{TEST_PRETTY_COLOR_NAME} || 'BRIGHT_BLACK'], "  $name");
         $result->{name} = $name;
     }
     else {
@@ -360,6 +369,8 @@ sub _skip {
 __END__
 
 =encoding utf8
+
+=for stopwords cho45++
 
 =head1 NAME
 

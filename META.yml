@@ -10,7 +10,7 @@ configure_requires:
   CPAN::Meta::Prereqs: 0
   Module::Build: 0.38
 dynamic_config: 0
-generated_by: 'Minilla/v0.0.53, CPAN::Meta::Converter version 2.120921'
+generated_by: 'Minilla/v0.5.3, CPAN::Meta::Converter version 2.130880'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -28,31 +28,23 @@ no_index:
 provides:
   App::Prove::Plugin::Pretty:
     file: lib/App/Prove/Plugin/Pretty.pm
-    version: 0
   App::Prove::Plugin::retty:
     file: lib/App/Prove/Plugin/retty.pm
-    version: 0
   TAP::Formatter::Pretty::Multi:
     file: lib/TAP/Formatter/Pretty/Multi.pm
-    version: 0
   TAP::Formatter::Pretty::Multi::Session:
     file: lib/TAP/Formatter/Pretty/Multi/Session.pm
-    version: 0
   TAP::Formatter::Pretty::Single:
     file: lib/TAP/Formatter/Pretty/Single.pm
-    version: 0
   TAP::Formatter::Pretty::Single::Session:
     file: lib/TAP/Formatter/Pretty/Single/Session.pm
-    version: 0
   Test::Pretty:
     file: lib/Test/Pretty.pm
-    version: 0.25
+    version: 0.26
   Test::Pretty::Harness:
     file: lib/Test/Pretty/Harness.pm
-    version: 0
   Test::Pretty::Parser:
     file: lib/Test/Pretty/Parser.pm
-    version: 0
 requires:
   Carp: 0
   File::Temp: 0
@@ -72,9 +64,11 @@ resources:
   bugtracker: https://github.com/tokuhirom/Test-Pretty/issues
   homepage: https://github.com/tokuhirom/Test-Pretty
   repository: git://github.com/tokuhirom/Test-Pretty.git
-version: 0.25
+version: 0.26
 x_contributors:
   - 'Kenichi Ishigaki <ishigaki@cpan.org>'
   - 'mattn <mattn.jp@gmail.com>'
   - 'Tasuku SUENAGA a.k.a. gunyarakun <tasuku-s-github@titech.ac>'
+  - 'Andreas Marienborg <andreas.marienborg@gmail.com>'
+  - 'Zakariyya Mughal <zaki.mughal@gmail.com>'
   - 'tokuhirom <tokuhirom@gmail.com>'

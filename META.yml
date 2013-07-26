@@ -10,7 +10,7 @@ configure_requires:
   CPAN::Meta::Prereqs: 0
   Module::Build: 0.38
 dynamic_config: 0
-generated_by: 'Minilla/v0.5.3, CPAN::Meta::Converter version 2.130880'
+generated_by: 'Minilla/v0.5.5, CPAN::Meta::Converter version 2.130880'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -40,7 +40,7 @@ provides:
     file: lib/TAP/Formatter/Pretty/Single/Session.pm
   Test::Pretty:
     file: lib/Test/Pretty.pm
-    version: 0.26
+    version: 0.27
   Test::Pretty::Harness:
     file: lib/Test/Pretty/Harness.pm
   Test::Pretty::Parser:
@@ -64,11 +64,12 @@ resources:
   bugtracker: https://github.com/tokuhirom/Test-Pretty/issues
   homepage: https://github.com/tokuhirom/Test-Pretty
   repository: git://github.com/tokuhirom/Test-Pretty.git
-version: 0.26
+version: 0.27
 x_contributors:
   - 'Kenichi Ishigaki <ishigaki@cpan.org>'
   - 'mattn <mattn.jp@gmail.com>'
   - 'Tasuku SUENAGA a.k.a. gunyarakun <tasuku-s-github@titech.ac>'
   - 'Andreas Marienborg <andreas.marienborg@gmail.com>'
   - 'Zakariyya Mughal <zaki.mughal@gmail.com>'
+  - 'Takumi Akiyama <t.akiym@gmail.com>'
   - 'tokuhirom <tokuhirom@gmail.com>'

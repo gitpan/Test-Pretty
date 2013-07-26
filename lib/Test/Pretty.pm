@@ -2,7 +2,7 @@ package Test::Pretty;
 use strict;
 use warnings;
 use 5.008001;
-our $VERSION = '0.26';
+our $VERSION = '0.27';
 
 use Test::Builder 0.82;
 use Term::Encoding ();
@@ -29,11 +29,13 @@ my $get_src_line = sub {
     $filename = File::Spec->rel2abs($filename, $BASE_DIR);
     # read a source as utf-8... Yes. it's bad. but works for most of users.
     # I may need to remove binmode for STDOUT?
-    my $lines = $filecache{$filename} ||= do {
+    my $lines = $filecache{$filename} ||= sub {
+        # :encoding is likely to override $@
+        local $@;
         open my $fh, "<:encoding(utf-8)", $filename
             or return '';
         [<$fh>]
-    };
+    }->();
     my $line = $lines->[$lineno-1];
     $line =~ s/^\s+|\s+$//g;
     return $line;

@@ -29,6 +29,7 @@ t/fork.t
 t/iss5.t
 t/no_plan.t
 t/no_test_in_subtest.t
+t/overridden.t
 t/plx/bad_plan.plx
 t/plx/bad_plan2.plx
 t/plx/builder_skip.plx

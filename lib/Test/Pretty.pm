@@ -2,7 +2,7 @@ package Test::Pretty;
 use strict;
 use warnings;
 use 5.008001;
-our $VERSION = '0.27';
+our $VERSION = '0.28';
 
 use Test::Builder 0.82;
 use Term::Encoding ();
@@ -21,6 +21,8 @@ my $ORIGINAL_PID = $$;
 my $SHOW_DUMMY_TAP;
 my $TERM_ENCODING = Term::Encoding::term_encoding();
 my $ENCODING_IS_UTF8 = $TERM_ENCODING =~ /^utf-?8$/i;
+
+our $NO_ENDING; # Force disable the Test::Pretty finalization process.
 
 our $BASE_DIR = Cwd::getcwd();
 my %filecache;
@@ -138,6 +140,9 @@ END {
     # Don't bother with an ending if this is a forked copy.  Only the parent
     # should do the ending.
     if( $ORIGINAL_PID!= $$ ) {
+        goto NO_ENDING;
+    }
+    if ($Test::Pretty::NO_ENDING) {
         goto NO_ENDING;
     }
 

@@ -24,6 +24,7 @@ t/Util.pm
 t/bad_plan.t
 t/bad_plan2.t
 t/builder_skip.t
+t/eval.t
 t/exit.t
 t/fork.t
 t/iss5.t

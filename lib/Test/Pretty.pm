@@ -2,7 +2,7 @@ package Test::Pretty;
 use strict;
 use warnings;
 use 5.008001;
-our $VERSION = '0.28';
+our $VERSION = '0.29';
 
 use Test::Builder 0.82;
 use Term::Encoding ();
@@ -38,6 +38,7 @@ my $get_src_line = sub {
             or return '';
         [<$fh>]
     }->();
+    return unless ref $lines eq 'ARRAY';
     my $line = $lines->[$lineno-1];
     $line =~ s/^\s+|\s+$//g;
     return $line;

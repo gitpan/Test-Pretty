@@ -39,7 +39,7 @@ provides:
     file: lib/TAP/Formatter/Pretty/Single/Session.pm
   Test::Pretty:
     file: lib/Test/Pretty.pm
-    version: '0.29'
+    version: '0.30'
   Test::Pretty::Harness:
     file: lib/Test/Pretty/Harness.pm
   Test::Pretty::Parser:
@@ -63,7 +63,7 @@ resources:
   bugtracker: https://github.com/tokuhirom/Test-Pretty/issues
   homepage: https://github.com/tokuhirom/Test-Pretty
   repository: git://github.com/tokuhirom/Test-Pretty.git
-version: '0.29'
+version: '0.30'
 x_contributors:
   - 'Kenichi Ishigaki <ishigaki@cpan.org>'
   - 'mattn <mattn.jp@gmail.com>'
@@ -74,4 +74,5 @@ x_contributors:
   - 'Neil Bowers <neil@bowers.com>'
   - 'Valcho Nedelchev <vulcho@gmail.com>'
   - 'moznion <moznion@gmail.com>'
+  - 'Sean Zellmer <sean@lejeunerenard.com>'
   - 'Tokuhiro Matsuno <tokuhirom@gmail.com>'
